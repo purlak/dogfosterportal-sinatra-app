@@ -1,1 +1,21 @@
-create_dog.erb
+<h2> Add new dog to the foster database </h2>
+
+<form action="/dogs" method="POST">
+
+  <label> Dog </label>
+  <input id="dog_name" type="text" name="dog_name"><br>
+  <br></br>
+
+  <input id="age" type="text" name="age"><br>
+  <br></br>
+
+  <input id="breed" type="text" name="breed"><br>
+  <br></br>
+
+  <input id="adoption_status" type="text" name="adoption_status"><br>
+  <br></br>
+
+  <!-- add foster status -->
+
+  <input type="submit" value="submit">
+</form>
