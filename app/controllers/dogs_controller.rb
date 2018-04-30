@@ -87,8 +87,6 @@ class DogsController < ApplicationController
     else
       redirect '/login'
     end
-  end
-
-  
+  end  
 
 end 
