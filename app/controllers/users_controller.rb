@@ -25,6 +25,16 @@ class UsersController < ApplicationController
     end 
   end 
 
+  # Login
+
+  get '/login' do  
+    if session[:id]
+      redirect '/show_user_summary'
+    else
+      # to add flash message  
+      erb :'users/login'
+    end 
+  end 
 
 
 end 
