@@ -35,6 +35,21 @@ class DogsController < ApplicationController
     end
   end
 
+
+  # Edit Dog details 
+
+  get '/dogs/:id/edit' do
+    if session[:id]
+      @dog= Dog.find(params[:id])
+      @user=User.find_by(session[:id]) 
+         
+      erb :'/dogs/edit_dog'
+    else
+      # to add flash message 
+      redirect "/login"
+    end
+  end
+
   
 
 end 
