@@ -28,19 +28,21 @@ class UsersController < ApplicationController
   # Login
 
   get '/login' do  
-    if session[:id]
-      redirect 'users/show_user_summary'
-    else
+    #if session[:id]
+    #  redirect 'users/show_user_summary'
+    #else
       # to add flash message  
       erb :'users/login'
-    end 
+    #end 
   end 
 
   post '/login' do
     @user = User.find_by(username: params[:username])
+    
       if @user #&& @user.authenticate(params[:password])
         session[:id] = @user.id
-        redirect '/show_user_summary'
+        #binding.pry
+        erb :'users/show_user_summary'
       else
         #to add flash message
         redirect '/login'
@@ -52,7 +54,7 @@ class UsersController < ApplicationController
   get '/logout' do
     session.clear
     # To add flash message 
-    redirect '/login'
+    redirect '/'
   end
 
   #Find User
