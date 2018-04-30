@@ -52,8 +52,15 @@ class UsersController < ApplicationController
     session.clear
     # To add flash message 
     redirect '/login'
+  end
+
+  #Find User
+
+  get '/users/:slug' do
+    @user=User.find_by_slug(params[:slug])
+    @dog=Dog.all
+
+    erb :'users/show_user_summary'
   end 
-
-
 
 end 
