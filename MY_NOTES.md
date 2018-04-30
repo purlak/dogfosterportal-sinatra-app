@@ -12,6 +12,12 @@ Objective-
   - DELETE delete details of dog no longer being fostered
 
 
+Object relationship
+ - Every dog has one foster
+ - Every foster can have many dogs 
+ 
+
+
    Project requirements - 
 
     - Build an MVC Sinatra Application.
