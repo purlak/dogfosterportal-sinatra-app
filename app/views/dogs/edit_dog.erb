@@ -1,1 +1,19 @@
-edit_dog.erb
+<h3>  Edit dog information </h3>
+
+  <form action="/dogs/<%=@dog.id%>" method="POST">
+    <input  id="hidden" type="hidden" name="_method" value="patch">
+
+    <input id="dog_name" type="text" name="dog_name"><br>
+
+    <input id="age" type="text" name="age"><br>
+
+    <input id="breed" type="text" name="breed"><br>
+
+    <input id="adoption_status" type="text" name="adoption_status"><br>
+
+    <!-- add foster status -->
+
+    <br></br>
+
+    <input type="submit" value="submit">
+</form>
