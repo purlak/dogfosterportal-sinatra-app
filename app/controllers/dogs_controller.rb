@@ -36,7 +36,7 @@ class DogsController < ApplicationController
   end
 
 
-  # Edit Dog details 
+  # Edit/Update Dog details 
 
   get '/dogs/:id/edit' do
     if session[:id]
@@ -49,6 +49,22 @@ class DogsController < ApplicationController
       redirect "/login"
     end
   end
+
+  patch '/dogs/:id' do
+    if session[:id]
+      @dog= Dog.find(params[:id])
+      #if params[:content] != ""
+      #  @tweet.update(content: params[:content])
+      #  redirect "/tweets/#{@tweet.id}"
+      else
+        redirect "/dogs/#{@dog.id}/edit"
+      end
+    else
+      #to add flash message
+      redirect '/login'
+    end
+    
+end
 
   
 
