@@ -12,7 +12,7 @@ class DogsController < ApplicationController
   end 
 
 
-  # Create Dog 
+  # Create Dog / Add new dog to db
 
   get '/dogs/new' do 
     if session[:id]
