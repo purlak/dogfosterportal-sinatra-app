@@ -56,9 +56,9 @@ class DogsController < ApplicationController
       #if params[:content] != ""
       #  @tweet.update(content: params[:content])
       #  redirect "/tweets/#{@tweet.id}"
-      else
-        redirect "/dogs/#{@dog.id}/edit"
-      end
+      #else
+      #  redirect "/dogs/#{@dog.id}/edit"
+      #end
     else
       #to add flash message
       redirect '/login'

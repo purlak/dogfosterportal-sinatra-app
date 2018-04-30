@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   # Signup 
 
   get '/signup' do 
-    if session[:user_id]
+    if session[:id]
       redirect 'users/show_user_summary'
     else 
       erb :signup  
@@ -20,8 +20,8 @@ class UsersController < ApplicationController
       redirect '/signup'
     else  
       # to add flash message 
-      session[:user_id] = 1
-      redirect 'users/show_user_summary'
+      session[:id] = 1
+      redirect '/show_user_summary'
     end 
   end 
 
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
   get '/login' do  
     if session[:id]
-      redirect '/show_user_summary'
+      redirect 'users/show_user_summary'
     else
       # to add flash message  
       erb :'users/login'
