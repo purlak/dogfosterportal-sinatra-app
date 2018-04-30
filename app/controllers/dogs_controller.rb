@@ -22,6 +22,19 @@ class DogsController < ApplicationController
       redirect '/login'
     end 
   end 
+
+  # Display dog by id 
+
+  get '/dogs/:id' do 
+    if session[:id]
+      @dog= Tweet.find(params[:id])
+      erb :'/dogs/show_dog'
+    else
+      # to add flash message
+      redirect "/login"
+    end
+  end
+
   
 
 end 
