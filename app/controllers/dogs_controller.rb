@@ -6,9 +6,21 @@ class DogsController < ApplicationController
       @dog= Dog.all 
       erb :'dogs/dogs'
     else 
-      #to add flash messahe
+      #to add flash message
       redirect '/login'
     end
+  end 
+
+
+  # Create Dog 
+
+  get '/dogs/new' do 
+    if session[:id]
+      erb :'dogs/create_dog'
+    else 
+      # to add flash message 
+      redirect '/login'
+    end 
   end 
   
 
