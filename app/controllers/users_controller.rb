@@ -42,6 +42,7 @@ class UsersController < ApplicationController
         session[:id] = @user.id
         redirect '/show_user_summary'
       else
+        #to add flash message
         redirect '/login'
       end
   end 
