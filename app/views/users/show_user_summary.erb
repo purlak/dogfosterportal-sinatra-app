@@ -1,1 +1,14 @@
-show_user_summary.erb
+<!-- Display user summary page-->
+<h3> <%= @user.username%>, this is your summary page.</h3>
+
+<% @user.dogs.each do |dog| %>
+  <h3><a href="/dogs/<%=dog.id %>"><%= dog.dog_name%></a></h3>
+<% end %>
+
+<br>
+
+<a href="/dogs"> Return to list of available dogs </a>
+
+<br>
+
+<a href="/logout">Logout</a>
