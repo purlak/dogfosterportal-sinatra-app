@@ -2,9 +2,9 @@ class UsersController < ApplicationController
 
   get '/signup' do 
     if session[:user_id]
-      redirect 'dogs/dogs'
+      redirect 'users/show_user_summary'
     else 
-      erb :index  
+      erb :signup  
     end  
   end 
 
