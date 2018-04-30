@@ -36,5 +36,16 @@ class UsersController < ApplicationController
     end 
   end 
 
+  post '/login' do
+    @user = User.find_by(username: params[:username])
+   
+      if @user #&& @user.authenticate(params[:password])
+        session[:id] = @user.id
+        redirect '/show_user_summary'
+      else
+        redirect '/login'
+      end
+  end 
+
 
 end 
