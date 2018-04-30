@@ -63,8 +63,31 @@ class DogsController < ApplicationController
       #to add flash message
       redirect '/login'
     end
+  end
+
+  #Delete dog 
+
+  delete '/dogs/:id/delete' do
+    if session[:id]
+      
+      if Dog.find(params[:id])
+        @dog = Dog.find(params[:id])
+        @user=User.find_by(session[:id])
+        
+        if @dog.user_id == @user.id
+            @dog.delete
+        else
+          redirect '/dogs'
+        end 
+        
+      else
+        redirect '/dogs'
+      end
     
-end
+    else
+      redirect '/login'
+    end
+  end
 
   
 
