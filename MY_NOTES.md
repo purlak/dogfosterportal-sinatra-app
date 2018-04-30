@@ -8,14 +8,15 @@ Objective-
      -- Name
      -- Age
      -- Breed
-     -- Adopted?
+     -- Adoption_status
+     -- User_id
   - DELETE delete details of dog no longer being fostered
 
 
 Object relationship
  - Every dog has one foster
  - Every foster can have many dogs 
- 
+
 
 
    Project requirements - 
