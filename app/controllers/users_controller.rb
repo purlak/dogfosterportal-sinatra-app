@@ -46,5 +46,14 @@ class UsersController < ApplicationController
       end
   end 
 
+  #Logout
+
+  get '/logout' do
+    session.clear
+    # To add flash message 
+    redirect '/login'
+  end 
+
+
 
 end 
