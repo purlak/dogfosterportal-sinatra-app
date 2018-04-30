@@ -31,3 +31,6 @@ Object relationship
     - Ensure that any instance of the resource that belongs to a user can be edited or deleted only by that user.
     - You should also have validations for user input to ensure that bad data isn't added to the database. The fields in your signup form should be required and the user attribute that is used to login a user should be a unique value in the DB before creating the user.
 
+
+
+
