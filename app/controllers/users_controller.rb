@@ -38,11 +38,11 @@ class UsersController < ApplicationController
 
   post '/login' do
     @user = User.find_by(username: params[:username])
-    
-      if @user #&& @user.authenticate(params[:password])
+      #binding.pry
+      if @user && @user.authenticate(params[:password])
         session[:id] = @user.id
         #binding.pry
-        erb :'users/show_user_summary'
+        redirect "/users/#{@user.id}"
       else
         #to add flash message
         redirect '/login'
@@ -59,10 +59,9 @@ class UsersController < ApplicationController
 
   #Find User
 
-  get '/users/:slug' do
-    @user=User.find_by_slug(params[:slug])
+  get '/users/:id' do
+    @user=User.find_by(:id => params[:id])
     @dog=Dog.all
-
     erb :'users/show_user_summary'
   end 
 
