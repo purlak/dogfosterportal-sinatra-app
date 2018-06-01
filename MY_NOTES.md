@@ -11,8 +11,9 @@ Objective-
      -- Adoption_status
      -- User_id
 
+     user can create a new dog in the db
      user can edit only a dog being fostered by them
-     
+
   - DELETE delete details of dog no longer being fostered
 
 
@@ -21,7 +22,7 @@ Object relationship
  - Every foster can have many dogs 
 
 Models
-- user/foster
+- user
 - Dog 
 
 
