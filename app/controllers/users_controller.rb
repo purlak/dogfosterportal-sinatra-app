@@ -3,11 +3,7 @@ class UsersController < ApplicationController
   # Signup 
 
   get '/signup' do 
-    if session[:id]
-      redirect 'users/show_user_summary'
-    else 
-      erb :signup  
-    end  
+    erb :'users/signup'      
   end 
 
   post '/signup' do
@@ -15,25 +11,26 @@ class UsersController < ApplicationController
     @password = params[:password]
     @email = params[:email]
     
+    binding.pry
     if @username == "" || @password == "" || @email == "" 
       # to add flash message 
       redirect '/signup'
     else  
       # to add flash message 
-      session[:id] = 1
-      redirect '/show_user_summary'
+      #session[:id] = 1
+      redirect "/users/#{@user.id}"
     end 
   end 
 
   # Login
 
   get '/login' do  
-    #if session[:id]
-    #  redirect 'users/show_user_summary'
-    #else
+    if session[:id]
+      redirect 'users/show_user_summary'
+    else
       # to add flash message  
       erb :'users/login'
-    #end 
+    end 
   end 
 
   post '/login' do
