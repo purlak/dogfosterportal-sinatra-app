@@ -10,13 +10,19 @@ Objective-
      -- Breed
      -- Adoption_status
      -- User_id
+
+     user can edit only a dog being fostered by them
+     
   - DELETE delete details of dog no longer being fostered
 
 
 Object relationship
- - Every dog has one foster
+ - Every dog belongs to one foster
  - Every foster can have many dogs 
 
+Models
+- user/foster
+- Dog 
 
 
    Project requirements - 
