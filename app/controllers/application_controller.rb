@@ -10,7 +10,12 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    erb :index
+    if session[:user_id]
+      redirect "users/#{session[:user_id]}"
+    else
+      # to add flash message  
+      erb :index
+    end 
   end
 
 end
