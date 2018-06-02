@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  # Signup 
+  # Signup routes
 
   get '/signup' do 
     erb :'users/signup'      
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     end
   end 
 
-  # Login
+  # Login routes 
 
   get '/login' do 
     erb :'users/login'   
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
       end
   end 
 
-  #Logout
+  #Logout route 
 
   get '/logout' do
     session.clear
@@ -48,10 +48,10 @@ class UsersController < ApplicationController
 
   #Find User
 
-  get '/users/:id' do
-    @user=User.find_by(:id => params[:id])
-    @dog=Dog.all
-    erb :'users/show_user_summary'
-  end 
+  #get '/users/:id' do
+  #  @user=User.find_by(:id => params[:id])
+  #  @dog=Dog.all
+  #  erb :'users/show_user_summary'
+  #end 
 
 end 

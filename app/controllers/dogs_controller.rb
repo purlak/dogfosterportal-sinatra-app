@@ -2,7 +2,7 @@ class DogsController < ApplicationController
 
   # Display details of all dogs 
   get '/dogs' do
-    if session[:id]
+    if session[:user_id]
       @dog= Dog.all 
       erb :'dogs/dogs'
     else 
@@ -10,7 +10,6 @@ class DogsController < ApplicationController
       redirect '/login'
     end
   end 
-
 
   # Create Dog / Add new dog to db
 
