@@ -7,30 +7,42 @@ class UsersController < ApplicationController
   end 
 
   post '/signup' do
-    @username = params[:username] 
-    @password = params[:password]
-    @email = params[:email]
+    username = params[:username] 
+    password = params[:password]
+    email = params[:email]
+
+    # make a @user with this info ^^
+    @user = User.new(:username => username, :email => email, :password => password)
+    if @user.save
+      # create flash message for success
+      redirect "/users/#{@user.id}"
+    else
+      # create a flash message for failure
+       erb :'users/signup'
+    end
     
-    binding.pry
-    if @username == "" || @password == "" || @email == "" 
+    #binding.pry
+    #if username == "" || password == "" || email == "" 
       # to add flash message 
-      redirect '/signup'
-    else  
+    #  redirect '/signup'
+    #else  
       # to add flash message 
       #session[:id] = 1
-      redirect "/users/#{@user.id}"
-    end 
+    #  redirect "/users/#{@user.id}"
+    #end 
   end 
 
   # Login
 
-  get '/login' do  
-    if session[:id]
-      redirect 'users/show_user_summary'
-    else
-      # to add flash message  
+  get '/login' do 
+    #binding.pry 
+    #if session[:id]
+    #  redirect 'users/show_user_summary'
+    #else
+      # to add flash message 
+      binding.pry 
       erb :'users/login'
-    end 
+    #end 
   end 
 
   post '/login' do
