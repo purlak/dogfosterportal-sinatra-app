@@ -24,14 +24,7 @@ class UsersController < ApplicationController
   # Login
 
   get '/login' do 
-    #binding.pry 
-    #if session[:id]
-    #  redirect 'users/show_user_summary'
-    #else
-      # to add flash message 
-      binding.pry 
-      erb :'users/login'
-    #end 
+    erb :'users/login'   
   end 
 
   post '/login' do
