@@ -11,25 +11,14 @@ class UsersController < ApplicationController
     password = params[:password]
     email = params[:email]
 
-    # make a @user with this info ^^
     @user = User.new(:username => username, :email => email, :password => password)
     if @user.save
       # create flash message for success
       redirect "/users/#{@user.id}"
     else
       # create a flash message for failure
-       erb :'users/signup'
+      erb :'users/signup'
     end
-    
-    #binding.pry
-    #if username == "" || password == "" || email == "" 
-      # to add flash message 
-    #  redirect '/signup'
-    #else  
-      # to add flash message 
-      #session[:id] = 1
-    #  redirect "/users/#{@user.id}"
-    #end 
   end 
 
   # Login
