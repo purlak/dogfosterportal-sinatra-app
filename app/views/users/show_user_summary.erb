@@ -1,6 +1,7 @@
 <!-- Display user summary page-->
 
-<h3> Welcome back <%= @user.username%>, this is your summary page.</h3>
+<h3> Welcome back <%= @user.username%>, this page lists all the dogs that are currently in your care.</h3>
+<p> Select a dog to view details or click return to view all dogs currently in care of the shelter.</p>
 
 <% @user.dogs.each do |dog| %>
   <h3><a href="/dogs/<%=dog.id %>"><%= dog.dog_name%></a></h3>
