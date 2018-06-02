@@ -1,0 +1,24 @@
+<!-- Display user's home page-->
+
+<h3> Welcome back, <%= @user.username.capitalize!%>! What would you like to do today?</h3>
+
+<!-- 1. View list of all dogs in the database -->
+
+<p> <a href="/dogs">1. View list of all dogs in the database</a></p>
+
+<% @user.dogs.each do |dog| %>
+  <h3><a href="/dogs/<%=dog.id %>"><%= dog.dog_name%></a></h3>
+<% end %>
+
+<!-- 2. Add a dog to the database -->
+<p> <a href="/create_dog">2. Add a dog to the database</a></p>
+
+<!-- 3. Edit details of a dog in the database-->
+<p> <a href="/edit_dog">3. Edit details of a dog in the database </a></p>
+
+<!-- 4. Delete a dog from the database. -->
+<p> <a href="/edit_dog">4. Delete a dog from the database</a></p>
+
+<!-- 5. Logout -->
+<p> <a href="/logout">5. Logout</a></p>
+
