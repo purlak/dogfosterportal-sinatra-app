@@ -3,10 +3,14 @@
 
 <form action="/signup" method="POST">
 
+  <label for = "username"> Username: 
   <input type="text" name="username" value=<%=@user.username if @user%>><br>
+
+  <label for = "email">Email:      
   <input type="email" name="email" value=<%=@user.email if @user%>> 
   <br>
 
+  <label for = "password">Password: 
   <input type="password" name="password" value=<%=@user.password if @user%>> <br>
   <input type="submit" value="Sign Up">
 
