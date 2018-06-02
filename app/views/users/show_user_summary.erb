@@ -1,6 +1,6 @@
 <!-- Display user summary page-->
 
-<h3> <%= @user.username%>, this is your summary page.</h3>
+<h3> Welcome back <%= @user.username%>, this is your summary page.</h3>
 
 <% @user.dogs.each do |dog| %>
   <h3><a href="/dogs/<%=dog.id %>"><%= dog.dog_name%></a></h3>
