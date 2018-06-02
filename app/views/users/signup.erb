@@ -3,9 +3,11 @@
 
 <form action="/signup" method="POST">
 
-  <input type="text" name="username" placeholder="username"><br>
-  <input type="email" name="email" placeholder="yourname@example.com"> <br>
-  <input type="password" name="password" placeholder="password"> <br>
+  <input type="text" name="username" value=<%=@user.username if @user%>><br>
+  <input type="email" name="email" value=<%=@user.email if @user%>> 
+  <br>
+
+  <input type="password" name="password" value=<%=@user.password if @user%>> <br>
   <input type="submit" value="Sign Up">
 
 </form>
