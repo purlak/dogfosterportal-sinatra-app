@@ -48,10 +48,10 @@ class UsersController < ApplicationController
 
   #Find User
 
-  #get '/users/:id' do
-  #  @user=User.find_by(:id => params[:id])
-  #  @dog=Dog.all
-  #  erb :'users/show_user_summary'
-  #end 
+  get '/users/:id' do
+    @user=User.find_by(:id => params[:id])
+    @dog=Dog.all
+    erb :'users/show'
+  end 
 
 end 
