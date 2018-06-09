@@ -1,6 +1,10 @@
 <!-- Display user's home page-->
 
-<h3> Welcome back, <%= @user.username.capitalize!%>! What would you like to do today?</h3>
+ <% if flash.has?(:message) %>
+    <%= flash[:message] %>
+<% end %>
+
+<h3> Welcome, <%= @user.username.capitalize!%>! What would you like to do today?</h3>
 
 <!-- 1. View list of all dogs in the database -->
 
