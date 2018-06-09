@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     @user = User.new(:username => username, :email => email, :password => password)
     if @user.save
       flash[:message] = "Success! Your account has been created."
+      binding.pry
       redirect to ("/users/#{@user.id}")
       
     else
