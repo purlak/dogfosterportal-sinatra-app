@@ -17,9 +17,9 @@ class UsersController < ApplicationController
     @user = User.new(:username => username, :email => email, :password => password)
     if @user.save
       flash[:message] = "Success! Your account has been created."
-      binding.pry
       redirect to ("/users/#{@user.id}")
       
+    # add check for unique user id
     else
       flash[:message] = "Looks like something went wrong! Enter all required details to signup."
       #erb :'users/signup'
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
         session[:id] = @user.id
         redirect "/users/#{@user.id}"
       else
-        #to add flash message
+        flash[:message] = "Looks like something went wrong! Try again."
         redirect '/login'
       end
   end 
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
   get '/logout' do
     session.clear
-    # To add flash message 
+    flash[:message] = "Logout successful!" 
     redirect '/'
   end
 
