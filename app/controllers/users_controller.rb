@@ -1,4 +1,7 @@
+require 'rack-flash'
+
 class UsersController < ApplicationController
+  use Rack::Flash
 
   # Signup routes
 
@@ -13,11 +16,13 @@ class UsersController < ApplicationController
 
     @user = User.new(:username => username, :email => email, :password => password)
     if @user.save
-      # create flash message for success
-      redirect "/users/#{@user.id}"
+      flash[:message] = "Success! Your account has been created."
+      redirect to ("/users/#{@user.id}")
+      
     else
-      # create a flash message for failure
-      erb :'users/signup'
+      flash[:message] = "Looks like something went wrong! Enter all required details to signup."
+      #erb :'users/signup'
+      redirect to ("/users/signup")
     end
   end 
 

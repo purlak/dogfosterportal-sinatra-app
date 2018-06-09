@@ -9,4 +9,5 @@ use Rack::MethodOverride
 use DogsController
 use UsersController
 
+
 run ApplicationController

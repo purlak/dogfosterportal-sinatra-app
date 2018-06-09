@@ -1,4 +1,7 @@
+require 'rack-flash'
+
 class DogsController < ApplicationController
+  use Rack::Flash
 
   # Display details of all dogs 
   get '/dogs' do
