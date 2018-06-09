@@ -6,10 +6,6 @@
 
 <p> <a href="/dogs">1. View list of all dogs in the database</a></p>
 
-<% @user.dogs.each do |dog| %>
-  <h3><a href="/dogs/<%=dog.id %>"><%= dog.dog_name%></a></h3>
-<% end %>
-
 <!-- 2. Add a dog to the database -->
 <p> <a href="/create_dog">2. Add a dog to the database</a></p>
 
