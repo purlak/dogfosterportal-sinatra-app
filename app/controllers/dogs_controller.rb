@@ -3,6 +3,7 @@ class DogsController < ApplicationController
   # Display details of all dogs 
   get '/dogs' do
     if session[:user_id]
+      binding.pry
       @dog= Dog.all 
       erb :'dogs/dogs'
     else 
