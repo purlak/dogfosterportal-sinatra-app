@@ -1,24 +1,18 @@
 <!-- Display user's home page-->
-
+<% binding.pry %>
  <% if flash.has?(:message) %>
     <%= flash[:message] %>
 <% end %>
 
 <h3> Welcome, <%= @user.username.capitalize!%>! What would you like to do today?</h3>
 
-<!-- 1. View list of all dogs in the database -->
+<!-- 1. View/Edit dogs in the database -->
 
-<p> <a href="/dogs">1. View list of all dogs in the database</a></p>
+<p> <a href="/dogs">1. View / Edit dogs in the database</a></p>
 
 <!-- 2. Add a dog to the database -->
 <p> <a href="/dogs/new">2. Add a dog to the database</a></p>
 
-<!-- 3. Edit details of a dog in the database-->
-<p> <a href="/edit_dog">3. Edit details of a dog in the database </a></p>
-
-<!-- 4. Delete a dog from the database. -->
-<p> <a href="/edit_dog">4. Delete a dog from the database</a></p>
-
-<!-- 5. Logout -->
-<p> <a href="/logout">5. Logout</a></p>
+<!-- 3. Logout -->
+<p> <a href="/logout">3. Logout</a></p>
 
