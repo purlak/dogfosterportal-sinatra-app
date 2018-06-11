@@ -9,6 +9,24 @@ class DogsController < ApplicationController
     erb :'dogs/dogs'
   end 
 
+  post '/dogs' do
+    if session[:id]
+      if params[:dog_name] != ""   
+        @dog = Dog.create(dog_name: params[:dog_name])
+
+        @user=User.find_by(session[:id]) 
+        @dog.user = @user
+        @dog.save 
+        redirect '/dogs'
+      else
+        redirect '/dogs/new'
+      end     
+    else
+      redirect '/login'
+    end
+    
+  end
+
   # Create Dog / Add new dog to db
 
   get '/dogs/new' do 
@@ -19,6 +37,26 @@ class DogsController < ApplicationController
       redirect '/login'
     end 
   end 
+
+  post '/dogs' do
+    @dog = Dog.create(params[:dog])
+
+    if !params[:artist].empty?
+      @song.artist = Artist.find_or_create_by(name: params[:artist][:name])
+    end
+    
+    if !params[:genre][:name].empty?
+      @song.genres << Genre.create(name: params[:genre][:name])
+    else
+      @song.genre_ids = params[:genres]
+    end
+    
+    @dog.save
+    
+    flash[:message] = "Successfully added dog to the database."
+    redirect to ("/dogs/#{@dog.id}")
+    
+  end
 
   # Display dog by id 
 
