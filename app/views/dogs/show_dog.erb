@@ -1,0 +1,17 @@
+<h1>Dog Information</h1>
+
+    <p>Name: <%= @dog.dog_name %></p>
+    <p>Age: <%= @dog.age%></p>
+    <p>Breed: <%= @dog.breed%></p>
+    <p>Adoption Status: <%= @dog.adoption_status%></p>
+
+  <p> <a href="/dogs"><button>Go Back</button></a></p>
+
+  <p> <a href="/logout"><button>Logout</button></a></p>
+
+
+
+    <% if flash.has?(:message) %>
+      <%= flash[:message] %>
+    <% end %>
+    

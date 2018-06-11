@@ -5,13 +5,8 @@ class DogsController < ApplicationController
 
   # Display details of all dogs 
   get '/dogs' do
-    if session[:user_id]
-      @dog= Dog.all 
-      erb :'dogs/dogs'
-    else 
-      #to add flash message
-      redirect '/login'
-    end
+    @dog= Dog.all 
+    erb :'dogs/dogs'
   end 
 
   # Create Dog / Add new dog to db
@@ -29,7 +24,7 @@ class DogsController < ApplicationController
 
   get '/dogs/:id' do 
     if session[:id]
-      @dog= Tweet.find(params[:id])
+      @dog= Dog.find(params[:id])
       erb :'/dogs/show_dog'
     else
       # to add flash message
