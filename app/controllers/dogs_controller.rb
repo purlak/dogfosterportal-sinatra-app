@@ -30,7 +30,7 @@ class DogsController < ApplicationController
   # Create Dog / Add new dog to db
 
   get '/dogs/new' do 
-    if session[:id]
+    if session[:user_id]
       erb :'dogs/create_dog'
     else 
       # to add flash message 
@@ -42,7 +42,7 @@ class DogsController < ApplicationController
   # Display dog by id 
 
   get '/dogs/:id' do 
-    if session[:id]
+    if session[:user_id]
       @dog= Dog.find(params[:id])
       erb :'/dogs/show_dog'
     else
@@ -55,9 +55,9 @@ class DogsController < ApplicationController
   # Edit/Update Dog details 
 
   get '/dogs/:id/edit' do
-    if session[:id]
+    if session[:user_id]
       @dog= Dog.find(params[:id])
-      @user=User.find_by(session[:id]) 
+      @user=User.find_by(session[:user_id]) 
          
       erb :'/dogs/edit_dog'
     else
@@ -67,7 +67,7 @@ class DogsController < ApplicationController
   end
 
   patch '/dogs/:id' do
-    if session[:id]
+    if session[:user_id]
       @dog= Dog.find(params[:id])
       #if params[:content] != ""
       #  @tweet.update(content: params[:content])
@@ -84,20 +84,22 @@ class DogsController < ApplicationController
   #Delete dog 
 
   delete '/dogs/:id/delete' do
-    if session[:id]
+   
+    if session[:user_id]
       
       if Dog.find(params[:id])
         @dog = Dog.find(params[:id])
-        @user=User.find_by(session[:id])
+        @user=User.find_by(:id => session[:user_id])
         
+        #binding.pry
         if @dog.user_id == @user.id
             @dog.delete
-        else
+            redirect '/dogs'
+        else 
+          flash[:message] = "Error. The user id does not match. Try again."
           redirect '/dogs'
         end 
         
-      else
-        redirect '/dogs'
       end
     
     else
