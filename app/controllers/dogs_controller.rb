@@ -38,26 +38,7 @@ class DogsController < ApplicationController
     end 
   end 
 
-  post '/dogs' do
-    @dog = Dog.create(params[:dog])
-
-    if !params[:artist].empty?
-      @song.artist = Artist.find_or_create_by(name: params[:artist][:name])
-    end
-    
-    if !params[:genre][:name].empty?
-      @song.genres << Genre.create(name: params[:genre][:name])
-    else
-      @song.genre_ids = params[:genres]
-    end
-    
-    @dog.save
-    
-    flash[:message] = "Successfully added dog to the database."
-    redirect to ("/dogs/#{@dog.id}")
-    
-  end
-
+  
   # Display dog by id 
 
   get '/dogs/:id' do 
