@@ -1,9 +1,13 @@
-<p>This is a list of all dogs currently in the care of the shelter.</p>
-
-<%Dog.all.each do |dog| %>
-  <h3><a href="/dogs/<%=dog.id %>"><%= dog.dog_name%></a></h3>
+<%if Dog.count == 0%>
+  <h3>Currently, there are no dogs in the care of this shelter. Check back in tomorrow.</h3> 
+<% else %>
+  <h3>This is a list of all dogs currently in the care of the shelter.</h3>
+  <% num = 0%>
+  <%Dog.all.each do |dog| %>
+    <p> <%=num+1 %>. <a href="/dogs/<%=dog.id %>"><%= dog.dog_name.capitalize%></a></p>
+    <% num += 1%>
+  <% end %>
 <% end %>
-
-<p> <a href="/users/"><button>Go Back</button></a></p>
+<p> <a href="/users/<%=session[:user_id]%>"><button>Go Back</button></a></p>
 
 <p> <a href="/logout"><button>Logout</button></a></p>
