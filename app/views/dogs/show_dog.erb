@@ -5,9 +5,6 @@
     <p>Breed: <%= @dog.breed%></p>
     <p>Adoption Status: <%= @dog.adoption_status%></p>
 
-  <p> <a href="/dogs"><button>Go Back</button></a></p>
-
-  <p> <a href="/dogs/create_dog"><button>Add</button></a></p>
   
   <p> <a href="/dogs/<%= @dog.id%>/edit"><button>Edit</button></a></p>
 
@@ -16,6 +13,10 @@
     <input type="submit" value="Delete">
   </form>
   
+  <p> <a href="/dogs/new/"><button> Add a new dog</button></a></p>
+  
+  <p> <a href="/dogs"><button>Go Back</button></a></p>
+
   <p> <a href="/logout"><button>Logout</button></a></p>
 
 

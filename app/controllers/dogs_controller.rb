@@ -3,6 +3,18 @@ require 'rack-flash'
 class DogsController < ApplicationController
   use Rack::Flash
 
+    # Create Dog / Add new dog to db
+
+  get 'dogs/new' do 
+    binding.pry
+    if session[:user_id]   
+      erb :'dogs/create_dog'
+    else 
+      #flash[:message] = "Success. Added dog to database." 
+      redirect '/login'
+    end 
+  end 
+  
   # Display details of all dogs 
   get '/dogs' do
     @dog= Dog.all 
@@ -10,7 +22,7 @@ class DogsController < ApplicationController
   end 
 
   post '/dogs' do
-    if session[:id]
+    if session[:user_id]
       if params[:dog_name] != ""   
         @dog = Dog.create(dog_name: params[:dog_name])
 
@@ -24,27 +36,14 @@ class DogsController < ApplicationController
     else
       redirect '/login'
     end
-    
   end
-
-  # Create Dog / Add new dog to db
-
-  get 'dogs/new' do 
-    binding.pry
-    if session[:user_id]   
-      erb :'dogs/create_dog'
-    else 
-      #flash[:message] = "Success. Added dog to database." 
-      redirect '/login'
-    end 
-  end 
-
+  
   # Edit/Update Dog details 
 
   get '/dogs/:id/edit' do
     if session[:user_id]
-      @dog= Dog.find(params[:id])
-      @user=User.find_by(session[:user_id]) 
+      @dog= Dog.find_by(:id => params[:id])
+      @user=User.find_by(:id => params[:id])
          
       erb :'/dogs/edit_dog'
     else
@@ -55,9 +54,9 @@ class DogsController < ApplicationController
 
   patch '/dogs/:id' do
     if session[:user_id]
-      @dog= Dog.find(params[:id])
+      @dog= Dog.find_by(:id => params[:id])
       #if params[:content] != ""
-      #  @tweet.update(content: params[:content])
+      #  @dog.update(content: params[:content])
       #  redirect "/tweets/#{@tweet.id}"
       #else
       #  redirect "/dogs/#{@dog.id}/edit"
@@ -98,7 +97,7 @@ class DogsController < ApplicationController
 
   get '/dogs/:id' do 
     if session[:user_id]
-      @dog= Dog.find(params[:id])
+     @dog= Dog.find_by(:id => params[:id])
       erb :'/dogs/show_dog'
     else
       redirect "/login"
