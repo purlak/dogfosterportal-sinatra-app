@@ -3,13 +3,19 @@ require 'rack-flash'
 class DogsController < ApplicationController
   use Rack::Flash
 
+  # Display details of all dogs in db
+  get '/dogs' do
+    @dog= Dog.all 
+    erb :'dogs/dogs'
+  end 
+
   # Create Dog / Add new dog to db
   get "/dogs/new" do 
     if session[:user_id]   
       erb :'dogs/create_dog'
     else 
-      #flash[:message] = "Success. Added dog to database." 
-      redirect '/login'
+      
+      redirect "/dogs"
     end 
   end 
 
@@ -25,7 +31,8 @@ class DogsController < ApplicationController
         @dog = Dog.create(dog_name: params[:dog_name], age: params[:age], breed: params[:breed], adoption_status: params[:adoption_status])
         @user=User.find_by(session[:id]) 
         @dog.user = @user
-        @dog.save 
+        @dog.save
+        flash[:message] = "Success. Added dog to database." 
         redirect '/dogs'
       else
         redirect '/dogs/new'
@@ -44,8 +51,7 @@ class DogsController < ApplicationController
          
       erb :'/dogs/edit_dog'
     else
-      # to add flash message 
-      redirect "/login"
+      redirect "/dogs"
     end
   end
 
@@ -71,8 +77,8 @@ class DogsController < ApplicationController
         redirect "/dogs/#{@dog.id}"
     
     else
-      #to add flash message
-      redirect '/login'
+      flash[:message] = "Error. The update did not go through. Try again."
+      redirect '/dogs'
     end
   end
 
@@ -92,7 +98,7 @@ class DogsController < ApplicationController
             redirect '/dogs'
         else 
           flash[:message] = "Error. The user id does not match. Try again."
-          redirect '/dogs'
+          redirect "/dogs"
         end 
         
       end
@@ -109,7 +115,7 @@ class DogsController < ApplicationController
      @dog= Dog.find_by(:id => params[:id])
       erb :'/dogs/show_dog'
     else
-      redirect "/login"
+      redirect "/dogs"
     end
   end
 
