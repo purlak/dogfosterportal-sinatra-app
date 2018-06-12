@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+    
 <h1>Dog Information</h1>
 
     <p>Name: <%= @dog.dog_name %></p>
@@ -19,7 +23,4 @@
 
 
 
-    <% if flash.has?(:message) %>
-      <%= flash[:message] %>
-    <% end %>
-    
+  

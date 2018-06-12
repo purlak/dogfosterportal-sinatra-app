@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+    
 <h3>  Edit <%= @dog.dog_name.capitalize%>'s information: </h3>
 
   <form action="/dogs/<%=@dog.id%>" method="POST">
@@ -17,6 +21,6 @@
     <input type="text" name="adoption_status" value=<%=@dog.adoption_status if @user%>><br>
 
     <!-- add foster status -->
-    
+
     <input type="submit" value="Submit">
 </form>

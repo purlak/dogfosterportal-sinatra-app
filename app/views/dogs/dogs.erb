@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+    
 <%if Dog.count == 0%>
   <h3>Currently, there are no dogs in the care of this shelter. Check back in tomorrow.</h3> 
 <% else %>

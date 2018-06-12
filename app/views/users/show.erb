@@ -1,6 +1,6 @@
 <!-- Display user's home page-->
 <% if flash.has?(:message) %>
-    <%= flash[:message] %>
+  <%= flash[:message] %>
 <% end %>
 
 <h3> Welcome, <%= @user.username.capitalize!%>! What would you like to do today?</h3>
