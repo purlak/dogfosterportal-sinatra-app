@@ -13,7 +13,7 @@ class DogsController < ApplicationController
     end 
   end 
 
-  # Display details of all dogs 
+  # Display details of all dogs in db
   get '/dogs' do
     @dog= Dog.all 
     erb :'dogs/dogs'
@@ -23,8 +23,6 @@ class DogsController < ApplicationController
     if session[:user_id]
       if params[:dog_name] != ""   
         @dog = Dog.create(dog_name: params[:dog_name], age: params[:age], breed: params[:breed], adoption_status: params[:adoption_status])
-        #binding.pry
-    
         @user=User.find_by(session[:id]) 
         @dog.user = @user
         @dog.save 
@@ -37,7 +35,7 @@ class DogsController < ApplicationController
     end
   end
   
-  # Edit/Update Dog details 
+  # Edit/Update dog details 
 
   get '/dogs/:id/edit' do
     if session[:user_id]
@@ -52,10 +50,8 @@ class DogsController < ApplicationController
   end
 
   patch '/dogs/:id' do
-    if session[:user_id]
-     
+    if session[:user_id]    
       @dog= Dog.find_by(:id => params[:id])
-      
       
       if params[:dog_name] != ""  
         @dog.update(dog_name: params[:dog_name])
