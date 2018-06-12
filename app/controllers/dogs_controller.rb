@@ -22,8 +22,9 @@ class DogsController < ApplicationController
   post '/dogs' do
     if session[:user_id]
       if params[:dog_name] != ""   
-        @dog = Dog.create(dog_name: params[:dog_name])
-
+        @dog = Dog.create(dog_name: params[:dog_name], age: params[:age], breed: params[:breed], adoption_status: params[:adoption_status])
+        #binding.pry
+    
         @user=User.find_by(session[:id]) 
         @dog.user = @user
         @dog.save 
