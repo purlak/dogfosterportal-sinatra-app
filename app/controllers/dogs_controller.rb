@@ -33,7 +33,7 @@ class DogsController < ApplicationController
     if session[:user_id]
       erb :'dogs/create_dog'
     else 
-      # to add flash message 
+      flash[:message] = "Success. Added dog to database." 
       redirect '/login'
     end 
   end 
@@ -46,7 +46,6 @@ class DogsController < ApplicationController
       @dog= Dog.find(params[:id])
       erb :'/dogs/show_dog'
     else
-      # to add flash message
       redirect "/login"
     end
   end
@@ -91,7 +90,6 @@ class DogsController < ApplicationController
         @dog = Dog.find(params[:id])
         @user=User.find_by(:id => session[:user_id])
         
-        #binding.pry
         if @dog.user_id == @user.id
             @dog.delete
             flash[:message] = "Delete successful!"
