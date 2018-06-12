@@ -14,7 +14,7 @@ class DogsController < ApplicationController
       redirect '/login'
     end 
   end 
-  
+
   # Display details of all dogs 
   get '/dogs' do
     @dog= Dog.all 
@@ -54,13 +54,27 @@ class DogsController < ApplicationController
 
   patch '/dogs/:id' do
     if session[:user_id]
+     
       @dog= Dog.find_by(:id => params[:id])
-      #if params[:content] != ""
-      #  @dog.update(content: params[:content])
-      #  redirect "/tweets/#{@tweet.id}"
-      #else
-      #  redirect "/dogs/#{@dog.id}/edit"
-      #end
+      
+      
+      if params[:dog_name] != ""  
+        @dog.update(dog_name: params[:dog_name])
+      end 
+
+      if params[:age] != ""  
+        @dog.update(age: params[:age])
+      end 
+
+      if params[:breed] != ""  
+        @dog.update(breed: params[:breed])
+      end 
+
+      if params[:adoption_status] != ""  
+        @dog.update(adoption_status: params[:adoption_status])
+      end      
+        redirect "/dogs/#{@dog.id}"
+    
     else
       #to add flash message
       redirect '/login'
