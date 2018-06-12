@@ -29,27 +29,15 @@ class DogsController < ApplicationController
 
   # Create Dog / Add new dog to db
 
-  get '/dogs/new' do 
-    if session[:user_id]
+  get 'dogs/new' do 
+    binding.pry
+    if session[:user_id]   
       erb :'dogs/create_dog'
     else 
-      flash[:message] = "Success. Added dog to database." 
+      #flash[:message] = "Success. Added dog to database." 
       redirect '/login'
     end 
   end 
-
-  
-  # Display dog by id 
-
-  get '/dogs/:id' do 
-    if session[:user_id]
-      @dog= Dog.find(params[:id])
-      erb :'/dogs/show_dog'
-    else
-      redirect "/login"
-    end
-  end
-
 
   # Edit/Update Dog details 
 
@@ -105,5 +93,16 @@ class DogsController < ApplicationController
       redirect '/login'
     end
   end  
+
+  # Display dog by id 
+
+  get '/dogs/:id' do 
+    if session[:user_id]
+      @dog= Dog.find(params[:id])
+      erb :'/dogs/show_dog'
+    else
+      redirect "/login"
+    end
+  end
 
 end 
