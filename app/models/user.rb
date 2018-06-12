@@ -3,14 +3,9 @@ class User < ActiveRecord::Base
   has_many :dogs
 
   validates :username, presence: true
+  validates :username, uniqueness: true
+  
   validates :email, presence: true
-
-  def slug
-    @slug = self.username.downcase.gsub(" ", "-")
-  end
-
-  def self.find_by_slug(slug)
-    @user = self.all.find { |s| s.slug == slug }
-  end
+  validates :email, uniqueness: true
 
 end 
