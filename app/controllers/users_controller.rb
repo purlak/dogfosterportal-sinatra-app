@@ -13,18 +13,14 @@ class UsersController < ApplicationController
     username = params[:username] 
     password = params[:password]
     email = params[:email]
-
     @user = User.new(:username => username, :email => email, :password => password)
     if @user.save
       flash[:message] = "Success! Your account has been created."
-
       redirect "/users/#{@user.id}"
       
-    # add check for unique user id
     else
       flash[:message] = "Looks like something went wrong! Enter all required details to signup."
-      #erb :'users/signup'
-      redirect "/users/signup"
+      erb :'users/signup'
     end
   end 
 

@@ -14,7 +14,6 @@ class DogsController < ApplicationController
     if session[:user_id]   
       erb :'dogs/create_dog'
     else 
-      
       redirect "/dogs"
     end 
   end 
@@ -29,12 +28,13 @@ class DogsController < ApplicationController
     if session[:user_id]
       if params[:dog_name] != ""   
         @dog = Dog.create(dog_name: params[:dog_name], age: params[:age], breed: params[:breed], adoption_status: params[:adoption_status])
-        @user=User.find_by(session[:id]) 
-        @dog.user = @user
+        @user=User.find_by(:id => params[:id])
+        @dog.user_id = session[:user_id]
         @dog.save
         flash[:message] = "Success. Added dog to database." 
         redirect '/dogs'
       else
+        flash[:message] = "Error. Try again." 
         redirect '/dogs/new'
       end     
     else
@@ -51,7 +51,7 @@ class DogsController < ApplicationController
          
       erb :'/dogs/edit_dog'
     else
-      redirect "/dogs"
+      redirect "/login"
     end
   end
 
@@ -74,11 +74,11 @@ class DogsController < ApplicationController
       if params[:adoption_status] != ""  
         @dog.update(adoption_status: params[:adoption_status])
       end      
+        flash[:message] = "Error. The update did not go through. Try again."
         redirect "/dogs/#{@dog.id}"
     
     else
-      flash[:message] = "Error. The update did not go through. Try again."
-      redirect '/dogs'
+      redirect '/login'
     end
   end
 
@@ -113,9 +113,10 @@ class DogsController < ApplicationController
   get '/dogs/:id' do 
     if session[:user_id]
      @dog= Dog.find_by(:id => params[:id])
+      @user=User.find_by(:id => session[:user_id])
       erb :'/dogs/show_dog'
     else
-      redirect "/dogs"
+      redirect "/login"
     end
   end
 
