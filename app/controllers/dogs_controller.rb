@@ -94,6 +94,7 @@ class DogsController < ApplicationController
         #binding.pry
         if @dog.user_id == @user.id
             @dog.delete
+            flash[:message] = "Delete successful!"
             redirect '/dogs'
         else 
           flash[:message] = "Error. The user id does not match. Try again."
