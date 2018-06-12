@@ -9,18 +9,20 @@
     <input  id="hidden" type="hidden" name="_method" value="patch">
 
     <label for = "Dog Name"> Dog Name: 
-    <input type="text" name="dog_name" value=<%=@dog.dog_name if @user%>><br>
+    <input type="text" name="dog_name" placeholder="enter new name" value=<%=@dog.dog_name if @user%>><br>
 
     <label for = "Age"> Age: 
-    <input type="integer" name="age" value=<%=@dog.age if @user%>><br>
+    <input type="integer" name="age" placeholder="enter new age" value=<%=@dog.age if @user%>><br>
 
     <label for = "Breed"> Breed: 
-    <input type="text" name="breed" value=<%=@dog.breed if @user%>><br>
+    <input type="text" name="breed" placeholder="enter new breed" value=<%=@dog.breed if @user%>><br>
 
     <label for = "Adoption Status"> Adoption Status: 
-    <input type="text" name="adoption_status" value=<%=@dog.adoption_status if @user%>><br>
+    <input type="text" name="adoption_status" placeholder="enter new status" value=<%=@dog.adoption_status if @user%>><br>
 
     <!-- add foster status -->
 
     <input type="submit" value="Submit">
+
+     <p> <a href="/dogs"><button>Cancel</button></a></p>
 </form>

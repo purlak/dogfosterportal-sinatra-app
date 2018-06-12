@@ -1,3 +1,4 @@
+
 <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>
@@ -9,7 +10,7 @@
     <p>Breed: <%= @dog.breed%></p>
     <p>Adoption Status: <%= @dog.adoption_status%></p>
 
-  
+
   <p> <a href="/dogs/<%= @dog.id%>/edit"><button>Edit</button></a></p>
 
   <form action="/dogs/<%= @dog.id %>/delete" method="post">
@@ -21,6 +22,3 @@
 
   <p> <a href="/logout"><button>Logout</button></a></p>
 
-
-
-  

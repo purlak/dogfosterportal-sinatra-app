@@ -5,7 +5,7 @@
 <%if Dog.count == 0%>
   <h3>Currently, there are no dogs in the care of this shelter. Check back in tomorrow.</h3> 
 <% else %>
-  <h3>This is a list of all dogs currently in the care of the shelter.</h3>
+  <h3>Here's a list of all the dogs in the database.</h3>
   <% num = 0%>
   <%Dog.all.each do |dog| %>
     <p> <%=num+1 %>. <a href="/dogs/<%=dog.id %>"><%= dog.dog_name.capitalize%></a></p>
@@ -13,8 +13,8 @@
   <% end %>
 <% end %>
 
-<p> <a href="/users/<%=session[:user_id]%>"><button>Go Back</button></a></p>
+<h3>What would you like to do?</h3>
 
 <p> <a href="dogs/new"><button>Add a dog</button></a></p>
-
+<p> <a href="/users/<%=session[:user_id]%>"><button>Go Back</button></a></p>
 <p> <a href="/logout"><button>Logout</button></a></p>
