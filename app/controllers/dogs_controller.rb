@@ -3,10 +3,8 @@ require 'rack-flash'
 class DogsController < ApplicationController
   use Rack::Flash
 
-    # Create Dog / Add new dog to db
-
-  get 'dogs/new' do 
-    binding.pry
+  # Create Dog / Add new dog to db
+  get "/dogs/new" do 
     if session[:user_id]   
       erb :'dogs/create_dog'
     else 
