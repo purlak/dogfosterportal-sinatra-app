@@ -2,12 +2,13 @@
   <%= flash[:message] %>
 <% end %>
     
-<%if Dog.count == 0%>
+<%if @dogs.count == 0%>
   <h3>Currently, there are no dogs in the care of this shelter. Check back in tomorrow.</h3> 
 <% else %>
   <h3>Here's a list of all the dogs in the database.</h3>
   <% num = 0%>
-  <%Dog.all.each do |dog| %>
+
+  <%@dogs.each do |dog| %>
     <p> <%=num+1 %>. <a href="/dogs/<%=dog.id %>"><%= dog.dog_name.capitalize%></a></p>
     <% num += 1%>
   <% end %>
