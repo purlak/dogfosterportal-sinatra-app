@@ -1,18 +1,17 @@
 Objective-
 
--- Build a Sinatra MVC webapp which allows dog foster volunteers to - 
-  - CREATE/signup allows an foster to signup to the portal
-  -LOGIN/LOGOUT allows an existing foster to login and logout of the app
-  - READ - allows a logged-in foster to view details of all dogs in the care of the shelter
-  - UPDATE - allows a logged-in foster to update details of dogs in their care such as 
+-- Build a Sinatra MVC webapp which allows users to - 
+  - CREATE/signup allows an user to signup to the portal
+  -LOGIN/LOGOUT allows an existing user to login and logout of the app
+  - READ - allows a logged-in user to view details of all dogs in the care of the shelter
+  - UPDATE - allows a logged-in user to update details of dogs in their care such as 
      -- Name
      -- Age
      -- Breed
      -- Adoption_status
-     -- User_id
 
      user can create a new dog in the db
-     user can edit only a dog being fostered by them
+     user can edit/delete  a dog which was originally added to the db by them
 
   - DELETE delete details of dog no longer being fostered
 
