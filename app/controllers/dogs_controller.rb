@@ -7,13 +7,13 @@ class DogsController < ApplicationController
 
   # Display details of all dogs in db
   get '/dogs' do
-    @dog= Dog.all 
+    @dogs= Dog.all 
     erb :'dogs/dogs'
   end 
 
   # Create Dog / Add new dog to db
   get "/dogs/new" do 
-    if session[:user_id]   
+    if logged_in?   
       erb :'dogs/create_dog'
     else 
       redirect "/dogs"
@@ -21,10 +21,10 @@ class DogsController < ApplicationController
   end 
 
   post '/dogs' do
-    if session[:user_id]
+    if logged_in?
       if params[:dog_name] != ""   
         @dog = Dog.create(dog_name: params[:dog_name], age: params[:age], breed: params[:breed], adoption_status: params[:adoption_status])
-        @user=User.find_by(:id => params[:id])
+        @user=current_user
         @dog.user_id = session[:user_id]
         @dog.save
         flash[:message] = "Success. Added dog to database." 
@@ -41,9 +41,9 @@ class DogsController < ApplicationController
   # Edit/Update dog details / check for user id match 
 
   get '/dogs/:id/edit' do
-    if session[:user_id]
+    if logged_in?
       @dog= Dog.find_by(:id => params[:id])
-      @user=User.find_by(:id => session[:user_id])
+      @user=current_user
          
         if @dog.user_id == @user.id
            
@@ -58,9 +58,9 @@ class DogsController < ApplicationController
   end
 
   patch '/dogs/:id' do
-    if session[:user_id]    
+    if logged_in?   
       @dog= Dog.find_by(:id => params[:id])
-      @user=User.find_by(:id => session[:user_id])
+      @user=current_user
       
 
       if params[:dog_name] != ""  
@@ -88,12 +88,11 @@ class DogsController < ApplicationController
 
   delete '/dogs/:id/delete' do
    
-    if session[:user_id]
+    if logged_in?
       
       if Dog.find(params[:id])
         @dog = Dog.find(params[:id])
-        @user=User.find_by(:id => session[:user_id])
-        
+        @user=current_user
         if @dog.user_id == @user.id
             @dog.delete
             flash[:message] = "Delete successful!"
@@ -112,10 +111,11 @@ class DogsController < ApplicationController
 
   # Find dog by id 
 
-  get '/dogs/:id' do 
-    if session[:user_id]
+  get '/dogs/:id' do
+    #binding.pry 
+    if logged_in?
      @dog= Dog.find_by(:id => params[:id])
-      @user=User.find_by(:id => session[:user_id])
+      @user=current_user
       erb :'/dogs/show_dog'
     else
       redirect "/login"
@@ -129,7 +129,7 @@ class DogsController < ApplicationController
     end
 
     def current_user
-      User.find(session[:user_id])
+      User.find_by(:id => session[:user_id])
     end
   end
 
