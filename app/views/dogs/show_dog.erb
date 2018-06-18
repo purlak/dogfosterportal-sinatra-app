@@ -5,10 +5,10 @@
     
 <h1>Dog Information</h1>
 
-    <p>Name: <%= @dog.dog_name %></p>
+    <p>Name: <%= @dog.dog_name.capitalize %></p>
     <p>Age: <%= @dog.age%></p>
-    <p>Breed: <%= @dog.breed%></p>
-    <p>Adoption Status: <%= @dog.adoption_status%></p>
+    <p>Breed: <%= @dog.breed.capitalize%></p>
+    <p>Adoption Status: <%= @dog.adoption_status.capitalize%></p>
 
   <p> <a href="/dogs/<%= @dog.id%>/edit"><button>Edit</button></a></p>
 
