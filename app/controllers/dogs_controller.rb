@@ -43,9 +43,15 @@ class DogsController < ApplicationController
   get '/dogs/:id/edit' do
     if session[:user_id]
       @dog= Dog.find_by(:id => params[:id])
-      @user=User.find_by(:id => params[:id])
+      @user=User.find_by(:id => session[:user_id])
          
-      erb :'/dogs/edit_dog'
+        if @dog.user_id == @user.id
+           
+          erb :'/dogs/edit_dog'
+        else      
+          flash[:message] = "Error. The user id does not match. Only the creator of the entry can edit this entry."
+          redirect "/dogs/#{@dog.id}"
+        end 
     else
       redirect "/login"
     end
@@ -54,7 +60,9 @@ class DogsController < ApplicationController
   patch '/dogs/:id' do
     if session[:user_id]    
       @dog= Dog.find_by(:id => params[:id])
+      @user=User.find_by(:id => session[:user_id])
       
+
       if params[:dog_name] != ""  
         @dog.update(dog_name: params[:dog_name])
       end 
@@ -69,10 +77,8 @@ class DogsController < ApplicationController
 
       if params[:adoption_status] != ""  
         @dog.update(adoption_status: params[:adoption_status])
-      end      
-        flash[:message] = "Error. The update did not go through. Try again."
-        redirect "/dogs/#{@dog.id}"
-    
+      end 
+      
     else
       redirect '/login'
     end
@@ -93,8 +99,8 @@ class DogsController < ApplicationController
             flash[:message] = "Delete successful!"
             redirect '/dogs'
         else 
-          flash[:message] = "Error. The user id does not match. Try again."
-          redirect "/dogs"
+          flash[:message] = "Error. The user id does not match. Only the creator of the entry can delete this entry."
+          redirect "/dogs/#{@dog.id}"
         end 
         
       end
@@ -113,6 +119,17 @@ class DogsController < ApplicationController
       erb :'/dogs/show_dog'
     else
       redirect "/login"
+    end
+  end
+
+  #helper methods 
+  helpers do
+    def logged_in?
+      !!session[:user_id]
+    end
+
+    def current_user
+      User.find(session[:user_id])
     end
   end
 
