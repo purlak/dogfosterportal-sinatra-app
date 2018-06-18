@@ -21,6 +21,7 @@ Run $ shotgun to start a local server on port 9393
 Contribution
 
 Please create a descriptive pull request
+
 License
 
 DogFosterPortal is released under the MIT License. Check LICENSE.md for more information.
