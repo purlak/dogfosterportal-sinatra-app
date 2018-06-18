@@ -1,5 +1,7 @@
 require 'rack-flash'
 
+#Dogs Controller 
+
 class DogsController < ApplicationController
   use Rack::Flash
 
@@ -16,12 +18,6 @@ class DogsController < ApplicationController
     else 
       redirect "/dogs"
     end 
-  end 
-
-  # Display details of all dogs in db
-  get '/dogs' do
-    @dog= Dog.all 
-    erb :'dogs/dogs'
   end 
 
   post '/dogs' do
@@ -42,7 +38,7 @@ class DogsController < ApplicationController
     end
   end
   
-  # Edit/Update dog details 
+  # Edit/Update dog details / check for user id match 
 
   get '/dogs/:id/edit' do
     if session[:user_id]
@@ -82,7 +78,7 @@ class DogsController < ApplicationController
     end
   end
 
-  #Delete dog 
+  #Delete dog route 
 
   delete '/dogs/:id/delete' do
    
@@ -108,7 +104,7 @@ class DogsController < ApplicationController
     end
   end  
 
-  # Display dog by id 
+  # Find dog by id 
 
   get '/dogs/:id' do 
     if session[:user_id]

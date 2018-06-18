@@ -1,5 +1,7 @@
 require 'rack-flash'
 
+#Users Controller 
+
 class UsersController < ApplicationController
   use Rack::Flash
 
