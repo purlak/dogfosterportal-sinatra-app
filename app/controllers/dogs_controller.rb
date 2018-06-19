@@ -12,7 +12,7 @@ class DogsController < ApplicationController
   end 
 
   # Create Dog / Add new dog to db
-  get "/dogs/new" do 
+  get '/dogs/new' do 
     if logged_in?   
       erb :'dogs/create_dog'
     else 
@@ -111,8 +111,7 @@ class DogsController < ApplicationController
 
   # Find dog by id 
 
-  get '/dogs/:id' do
-    #binding.pry 
+  get '/dogs/:id' do 
     if logged_in?
      @dog= Dog.find_by(:id => params[:id])
       @user=current_user
@@ -129,7 +128,8 @@ class DogsController < ApplicationController
     end
 
     def current_user
-      User.find_by(:id => session[:user_id])
+       User.find_by(:id => session[:user_id])
+       #@user ||= User.find(session[:user_id])   
     end
   end
 
