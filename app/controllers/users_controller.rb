@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     @user = User.new(:username => username, :email => email, :password => password)
 
     if @user.save
+      session[:user_id] = @user.id
       redirect "/users/#{@user.id}"  
     else
       flash[:message] = "Looks like something went wrong! Enter all required details to signup."
