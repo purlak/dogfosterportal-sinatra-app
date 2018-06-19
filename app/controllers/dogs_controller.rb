@@ -78,7 +78,7 @@ class DogsController < ApplicationController
       if params[:adoption_status] != ""  
         @dog.update(adoption_status: params[:adoption_status])
       end 
-      
+      redirect "/dogs/#{@dog.id}"
     else
       redirect '/login'
     end
