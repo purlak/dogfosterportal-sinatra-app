@@ -96,8 +96,8 @@ class DogsController < ApplicationController
       
       if Dog.find(params[:id])
         @dog = Dog.find(params[:id])
-        @user=current_user
-        if @dog.user_id == @user.id
+        #current_user
+        if @dog.user_id == current_user.id
             @dog.delete
             flash[:message] = "Delete successful!"
             redirect '/dogs'
@@ -118,7 +118,7 @@ class DogsController < ApplicationController
   get '/dogs/:id' do 
     if logged_in?
      @dog= Dog.find_by(:id => params[:id])
-      @user=current_user
+      #current_user
       erb :'/dogs/show_dog'
     else
       redirect "/login"
@@ -132,8 +132,11 @@ class DogsController < ApplicationController
     end
 
     def current_user
-       User.find_by(:id => session[:user_id])
-         
+      if !@user 
+        @user = User.find_by(:id => session[:user_id])
+      else 
+        @user
+      end   
     end
   end
 
