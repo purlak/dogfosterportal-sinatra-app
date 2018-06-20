@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     redirect '/'
   end
 
-  #Find User
+  #Show User
 
   get '/users/:id' do
     @user=User.find_by(:id => params[:id])

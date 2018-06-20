@@ -5,13 +5,13 @@ require 'rack-flash'
 class DogsController < ApplicationController
   use Rack::Flash
 
-  # Display details of all dogs in db
+  # index action
   get '/dogs' do
     @dogs= Dog.all 
     erb :'dogs/dogs'
   end 
 
-  # Create Dog / Add new dog to db
+  # New action
   get '/dogs/new' do 
     if logged_in?   
       erb :'dogs/create_dog'
@@ -19,6 +19,8 @@ class DogsController < ApplicationController
       redirect "/dogs"
     end 
   end 
+
+  #Create action
 
   post '/dogs' do
     if logged_in?
@@ -38,7 +40,7 @@ class DogsController < ApplicationController
     end
   end
   
-  # Edit/Update dog details / check for user id match 
+  # Edit action
 
   get '/dogs/:id/edit' do
     if logged_in?
@@ -56,6 +58,8 @@ class DogsController < ApplicationController
       redirect "/login"
     end
   end
+
+  #Update action
 
   patch '/dogs/:id' do
     if logged_in?   
@@ -84,7 +88,7 @@ class DogsController < ApplicationController
     end
   end
 
-  #Delete dog route 
+  #Destroy action 
 
   delete '/dogs/:id/delete' do
    
@@ -109,7 +113,7 @@ class DogsController < ApplicationController
     end
   end  
 
-  # Find dog by id 
+  # Show action
 
   get '/dogs/:id' do 
     if logged_in?
